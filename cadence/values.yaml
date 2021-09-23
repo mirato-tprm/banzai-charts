@@ -396,3 +396,12 @@ mysql:
   initializationFiles:
     user.sql: |-
       GRANT ALL PRIVILEGES ON *.* TO 'cadence'@'%';
+
+archival:
+  provider: 
+  history:
+    status: "disabled"
+    historyURI: 
+  visibility:
+    status: "disabled"
+    visibilityURI: 
