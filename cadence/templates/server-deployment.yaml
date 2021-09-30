@@ -40,9 +40,7 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
-      {{- with .Values.server.serviceAccountName }}
       serviceAccountName: {{ .Values.server.serviceAccountName }}
-      {{- end }}
       securityContext:
         {{- toYaml (default $.Values.server.podSecurityContext $serviceValues.podSecurityContext) | nindent 8 }}
       initContainers:
