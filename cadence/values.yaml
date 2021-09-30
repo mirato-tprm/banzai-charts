@@ -12,7 +12,7 @@ server:
     pullPolicy: IfNotPresent
 
   # Google service account 
-  serviceAccountName: 
+  serviceAccountName: "cadence-worker"
     # Global default settings (can be overridden per service)
   replicaCount: 1
   metrics:
