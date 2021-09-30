@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "cadence.componentname" (list $ $service) }}
+  
   labels:
     app.kubernetes.io/name: {{ include "cadence.name" $ }}
     helm.sh/chart: {{ include "cadence.chart" $ }}
@@ -14,6 +15,9 @@ metadata:
     app.kubernetes.io/part-of: {{ $.Chart.Name }}
 spec:
   replicas: {{ default $.Values.server.replicaCount $serviceValues.replicaCount }}
+  {{- if .Values.server.serviceAccountName -}}
+  serviceAccountName: {{- .Values.server.serviceAccountName -}}
+  {{- end -}}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "cadence.name" $ }}

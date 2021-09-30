@@ -11,7 +11,9 @@ server:
     tag: 0.21.3
     pullPolicy: IfNotPresent
 
-  # Global default settings (can be overridden per service)
+  # Google service account 
+  serviceAccountName: 
+    # Global default settings (can be overridden per service)
   replicaCount: 1
   metrics:
     # Annotate pods directly with Prometheus annotations.
