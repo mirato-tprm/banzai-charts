@@ -15,9 +15,7 @@ metadata:
     app.kubernetes.io/part-of: {{ $.Chart.Name }}
 spec:
   replicas: {{ default $.Values.server.replicaCount $serviceValues.replicaCount }}
-  {{- with .Values.server.serviceAccountName }}
-  serviceAccountName: {{ toYaml . }}
-  {{- end }}
+  serviceAccountName: {{ .Values.server.serviceAccountName }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "cadence.name" $ }}
