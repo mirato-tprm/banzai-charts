@@ -46,8 +46,8 @@ customResourceGroupRemap:
 image:
   ## TODO change to original repo after release of UID fixes
   registry: quay.io
-  repository: integreatly/grafana-operator
-  tag: v3.10.2
+  repository: grafana-operator/grafana-operator
+  tag: v3.10.4
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -79,8 +79,15 @@ grafana:
     tolerations: []
     affinity: {}
     envFrom: []
+#      - configMapRef:
+#          name: grafana-custom-config
     skipCreateAdminAccount: false
     priorityClassName: ""
+    securityContext: {}
+#      runAsUser: 472
+#      runAsGroup: 2000
+#      fsGroup: 2000
+    strategy: {}
 
 grafanaPluginInit:
   image:
@@ -241,6 +248,11 @@ defaultDeployment:
 
     auth.anonymous:
       enabled: true
+
+  dataStorage: {}
+#    accessModes:
+#    - ReadWriteOnce
+#    size: "10Gi"
 
   resources: {}
   readinessProbe:
