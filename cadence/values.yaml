@@ -8,7 +8,7 @@ debug: false
 server:
   image:
     repository: ubercadence/server
-    tag: 0.21.3
+    tag: 0.22.3
     pullPolicy: IfNotPresent
 
   # Google service account 
@@ -144,6 +144,7 @@ server:
         #   enabled: true
 
     logLevel: "debug,info"
+    levelKey: "level"
 
     # IMPORTANT: This value cannot be changed, once it's set.
     numHistoryShards: 512
@@ -161,8 +162,10 @@ server:
           existingSecret: ""
           consistency: One
           # datacenter: "us-east-1a"
-          # maxQPS: 1000
           # maxConns: 2
+
+          # protoVersion is the protocol Version to connect to cassandra host.
+          # protoVersion: 4
 
         sql:
           pluginName: "" # mysql
@@ -175,7 +178,6 @@ server:
           # maxConns: 20
           # maxIdleConns: 20
           # maxConnLifetime: "1h"
-          # maxQPS: 1000
           # connectAttributes:
             # tx_isolation: "READ-COMMITTED"
 
@@ -191,8 +193,10 @@ server:
           existingSecret: ""
           consistency: One
           # datacenter: "us-east-1a"
-          # maxQPS: 1000
           # maxConns: 2
+
+          # protoVersion is the protocol Version to connect to cassandra host.
+          # protoVersion: 4
 
         sql:
           pluginName: "" # mysql
@@ -205,7 +209,6 @@ server:
           # maxConns: 20
           # maxIdleConns: 20
           # maxConnLifetime: "1h"
-          # maxQPS: 1000
           # connectAttributes:
             # tx_isolation: "READ-COMMITTED"
 
@@ -215,6 +218,7 @@ server:
       type: ClusterIP
       grpcPort: 7833
       port: 7933
+      annotations: {}
     metrics:
       annotations: {}
         # enabled: false
@@ -238,6 +242,7 @@ server:
       # type: ClusterIP
       grpcPort: 7834
       port: 7934
+      annotations: {}
     metrics:
       annotations: {}
         # enabled: false
@@ -261,6 +266,7 @@ server:
       # type: ClusterIP
       grpcPort: 7835
       port: 7935
+      annotations: {}
     metrics:
       annotations: {}
         # enabled: false
@@ -283,6 +289,7 @@ server:
     service:
       # type: ClusterIP
       port: 7939
+      annotations: {}
     metrics:
       annotations: {}
         # enabled: false
@@ -307,7 +314,7 @@ web:
 
   image:
     repository: ubercadence/web
-    tag: v3.28.4
+    tag: v3.28.7
     pullPolicy: IfNotPresent
 
   tcheck:
