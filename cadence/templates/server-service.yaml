@@ -21,6 +21,10 @@ spec:
       targetPort: rpc
       protocol: TCP
       name: rpc
+    - port: {{ .Values.server.frontend.service.grpcPort }}
+      targetPort: {{ .Values.server.frontend.service.grpcPort }}
+      protocol: TCP
+      name: grpc
       {{- if hasKey .Values.server.frontend.service "nodePort" }}
       nodePort: {{ .Values.server.frontend.service.nodePort }}
       {{- end }}
